@@ -1,4 +1,5 @@
-import psycopg2
+import ../ct_functions as ct_funct
+#import psycopg2
 
 #connect to the db and open a cursor
 db_con = psycopg2.connect("dbname=test user=matt")

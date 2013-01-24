@@ -21,7 +21,13 @@
 #
 #
 
-import ctfunctions as ct_funct
+import sys
+
+ 
+if "/home/matt/ComicTracker-PG/libs" not in sys.path:
+	sys.path.append("/home/matt/ComicTracker-PG/libs")
+
+import ct_functions as ct_funct
 
 #---------------------------------------#
 # LIST_OF_TITLES			#
@@ -67,3 +73,4 @@ db_con.commit()
 
 db_cur.close()
 db_con.close()
+
