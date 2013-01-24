@@ -1,3 +1,29 @@
+# Comic Tracker
+# Production Functions
+# Matt Jones urlugal@gmail.com
+# Created 01.24.13
+# Last Update 01.24.13
+#
+# Notes:
+#This will store all production functions used by the various scripts in Comic Tracker.
+#The lastest versions can be found at https://git.caffeinatedengineering.com:ComicTracker-PG
+#
+# TODO:
+# * add error checking
+# * add support for rollling back large transactions
+# * add ability to work with story titles
+# * add ability to print out a status message
+# * add ability to automaticly modify own StoryArc.own when a new issue is added to ComicIssue
+#
+#
+#
+#-----ERROR CODES-----
+#  
+#  
+#  
+#
+
+
 import psycopg2
 
 #---------------------------------------#
