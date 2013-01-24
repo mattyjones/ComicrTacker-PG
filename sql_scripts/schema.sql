@@ -22,13 +22,13 @@ BEGIN;
 CREATE TABLE DefaultSeries (
 
 	defaultseries_id	serial	PRIMARY KEY,
-	defaultseries		text	--referencial check for the series table and will store all the values
+	defaultseries		text	UNIQUE --referencial check for the series table and will store all the values
 	);
 
 CREATE TABLE DefaultStoryArc (
 
 	defaultstoryarc_id	serial	PRIMARY KEY,
-	defaultstoryarc		text	--referencial check for the storyarc table and will store all the values
+	defaultstoryarc		text	UNIQUE --referencial check for the storyarc table and will store all the values
 	);
 
 CREATE TABLE ComicIssue (
@@ -36,7 +36,7 @@ CREATE TABLE ComicIssue (
 	comicissue_id			serial		PRIMARY KEY,  --unique id and will be used as a foreign key when needed
 	fkey_defaultseries_id 	int			REFERENCES DefaultSeries(defaultseries_id),
 	comicissue_num			int			NOT NULL,  --the title of the issue (ex. #15, #701)
-	isbn					int,		-- the isbn to check for varients and non-first editions
+	isbn					varchar(6),		-- the isbn to check for varients and non-first editions
 	pubdate					text		NOT NULL,  --the cover date (ex. Jun 86, Apr 11)
 	quanity					int			NOT NULL,  --how many copies are in the users collection
 	edition					int,		--the edition or printing number (ex. first, third)

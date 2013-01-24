@@ -1,0 +1,38 @@
+BEGIN;
+
+INSERT INTO DefaultSeries(defaultseries)
+Values ('Batman(1940)'),
+		('Batman(2011)'),
+		('Batman And Robin(2011)'),
+		('Batgirl(2011)'),
+		('Birds Of Prey(2011)'),
+		('Detective Comics(2011)'),
+		('Detective Comics(1939)'),
+		('Justice League(2011)'),
+		('Batman Inc(2011)'),
+		('Batman The Dark Knight(2011)'),
+		('Catwoman(2011)'),
+		('Arrow(2012)'),
+		('Aquaman(2011)'),
+		('Batman Annual(1961)'),
+		('Batman Annual(2012)'),
+		('Batman Arkham Unhinged'),
+		('Batman Arkham City'),
+		('Batgirl Annual(2012)'),
+		('Before Watchmen'),
+		('Deadpool(2013)'),
+		('Detective Comics Annual(2012)'),
+		('Detective Comics Annual(1988)'),
+		('Green Arrow(2011)'),
+		('Justice League International(2011)'),
+		('Justice League International Annual(2012)'),
+		('Legends Of The Dark Knight(2012)'),
+		('Nightwing(2011)'),
+		('Red Hood And The Outlaws(2011)'),
+		('Swamp Thing(2011)'),
+		('Swamp Thing Annual(2012)'),
+		('Sucicide Squad(2011)'),
+		('Talon'),
+		('Teen Titans(2011)');
+
+COMMIT;
