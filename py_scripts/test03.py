@@ -21,6 +21,12 @@
 #
 #
 
+
+the last thing I was trying to do was to get the series out from the list and then run it and return the id to insert into the statement.
+I should look at prepared statements and also creating a class for comic issues.
+
+
+
 import sys
 import csv
  
@@ -39,8 +45,7 @@ import ct_functions as ct_funct
 #---------------------------------------#
 
 STORY_ARC = 'Death Of The Family'
-COMIC_FILE = 'comic_inserts/batman_test.txt'
-
+COMIC_FILE = 'comic_inserts/detective_comics_1937.txt'
 LIST_OF_TITLES = {
                 "Batman(1940)": 
                         {"comicissue_num":0, 
@@ -57,39 +62,31 @@ LIST_OF_TITLES = {
 
 db_con, db_cur = ct_funct.db_connection() #open a connection
 
-storyarc_id = ct_funct.get_storyarc_id(STORY_ARC, db_cur)
-#print storyarc_id
+storyarc_id = ct_funct.get_storyarc_id(STORY_ARC, db_cur) #this will return the story_arc id for later insertion
 
+reader = csv.DictReader(open(COMIC_FILE, 'rw'), fieldnames = ['series', 'issue', 'date', 'isbn', 'quanity', 'edition'], dialect='excel-tab') #this reads a tab seperated file
 
-for title in LIST_OF_TITLES.iterkeys():       
-
-        series_id = ct_funct.get_series_id(title, db_cur)
-
-        comicinfo = LIST_OF_TITLES[title]
-
-        ct_funct.insert_ComicIssue(series_id, comicinfo, db_cur)
-
-
-#f = open(COMIC_FILE, 'rt')
-#try:
-#	reader = csv.DictReader(
-#	for row in reader:
-#		print row
-#finally:
-#	f.close()
-
-#with open(COMIC_FILE) as file_object:
-#	matt = list(csv.DictReader(file_object))
-#print matt
-
-reader = csv.DictReader(open(COMIC_FILE, 'r'), fieldnames = ['issue', 'isbn', 'key', 'date', 'quanity', 'edition'], dialect='excel-tab')
+comicinfo = [] # create a new list
 for row in reader:
-	print row
- 
+	comicinfo.append(row) #read all dict's into list one issue per line
+
+##print comicinfo
+
+s = {'series_id' : '7'} # get the correct series id 
+
+for item in comicinfo:
+	item.update (s) #append the series id to the list
+
+for item in comicinfo:
+	print item # print the list as a check
+
+for item in comicinfo: #insert the records into the table
+	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity, edition) VALUES ('%s','%s','%s','%s','%s','%s')" % (item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"], item["edition"]))
+        # TODO check return code of execute to make sure it worked and handle appropriately
 
 
-db_con.commit()
+db_con.commit() #commit all changes
 
-ct_funct.close_db_connection(db_con, db_cur)
+ct_funct.close_db_connection(db_con, db_cur) #close the cursor and connection
 
 
