@@ -90,23 +90,17 @@ def insert_ComicIssue(series_id, comicinfo, db_cur):
         # TODO check return code of execute to make sure it worked and handle appropriately
 
 
-#db_con, db_cur = db_connection() #open a connection
+#---------------------------------------#
+# close_db_connection                   #
+#                                       #
+# takes: the connection and cursor token#
+# returns: nothing		        #
+#                                       #
+#                                       #
+#---------------------------------------#
 
-#storyarc_id = get_storyarc_id(STORY_ARC)
-#print storyarc_id
+def close_db_connection(db_con, db_cur):
+	db_cur.close()
+	db_con.close()
 
-
-#for title in LIST_OF_TITLES.iterkeys():       
-
- #       series_id = get_series_id(title)
-
-  #      comicinfo = LIST_OF_TITLES[title]
-
-   #     insert_ComicIssue(series_id, comicinfo)
-
-
-#db_con.commit()
-
-#db_cur.close()
-#db_con.close()
 

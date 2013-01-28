@@ -22,7 +22,7 @@
 #
 
 import sys
-
+import csv
  
 if "/home/matt/ComicTracker-PG/libs" not in sys.path:
 	sys.path.append("/home/matt/ComicTracker-PG/libs")
@@ -39,6 +39,7 @@ import ct_functions as ct_funct
 #---------------------------------------#
 
 STORY_ARC = 'Death Of The Family'
+COMIC_FILE = 'comic_inserts/batman_test.txt'
 
 LIST_OF_TITLES = {
                 "Batman(1940)": 
@@ -69,8 +70,26 @@ for title in LIST_OF_TITLES.iterkeys():
         ct_funct.insert_ComicIssue(series_id, comicinfo, db_cur)
 
 
+#f = open(COMIC_FILE, 'rt')
+#try:
+#	reader = csv.DictReader(
+#	for row in reader:
+#		print row
+#finally:
+#	f.close()
+
+#with open(COMIC_FILE) as file_object:
+#	matt = list(csv.DictReader(file_object))
+#print matt
+
+reader = csv.DictReader(open(COMIC_FILE, 'r'), fieldnames = ['issue', 'isbn', 'key', 'date', 'quanity', 'edition'], dialect='excel-tab')
+for row in reader:
+	print row
+ 
+
+
 db_con.commit()
 
-db_cur.close()
-db_con.close()
+ct_funct.close_db_connection(db_con, db_cur)
+
 
