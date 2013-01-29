@@ -22,8 +22,8 @@
 #
 
 
-the last thing I was trying to do was to get the series out from the list and then run it and return the id to insert into the statement.
-I should look at prepared statements and also creating a class for comic issues.
+#the last thing I was trying to do was to get the series out from the list and then run it and return the id to insert into the statement.
+#I should look at prepared statements and also creating a class for comic issues.
 
 
 
@@ -79,9 +79,17 @@ for item in comicinfo:
 
 for item in comicinfo:
 	print item # print the list as a check
+	SQL = "INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity, edition) VALUES ('%s','%s','%s','%s','%s','%s');"
+	DATA = "(item[\"series_id\"], item[\"issue\"], item[\"isbn\"], item[\"date\"], item[\"quanity\"], item[\"edition\"])" 
+	db_cur.execute(SQL, DATA)
+#	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity, edition) VALUES (%(series_id)s, %(issue)s, %(isbn)s, %(date)s, %(quanity)s, %(edition)s);", { item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"], item["edition"] })
+        # TODO check return code of execute to make sure it worked and handle appropriately
 
-for item in comicinfo: #insert the records into the table
-	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity, edition) VALUES ('%s','%s','%s','%s','%s','%s')" % (item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"], item["edition"]))
+
+
+	#db_cur.execute(command)
+#for item in comicinfo: #insert the records into the table
+#	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity, edition) VALUES ('%s','%s','%s','%s','%s','%s')" % (item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"], item["edition"]))
         # TODO check return code of execute to make sure it worked and handle appropriately
 
 

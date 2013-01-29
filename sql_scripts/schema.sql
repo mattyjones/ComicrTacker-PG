@@ -39,7 +39,6 @@ CREATE TABLE ComicIssue (
 	isbn					varchar(6),		-- the isbn to check for varients and non-first editions
 	pubdate					text		NOT NULL,  --the cover date (ex. Jun 86, Apr 11)
 	quanity					int			NOT NULL,  --how many copies are in the users collection
-	edition					int,		--the edition or printing number (ex. first, third)
 	boxnumber				int,		--the location of the comic
 	notes  					text		--various notes about the comic
 	);

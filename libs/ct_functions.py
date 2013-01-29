@@ -86,7 +86,11 @@ def insert_ComicIssue(series_id, comicinfo, db_cur):
         #  "quantity": 1}
 
         # TODO investigate parameterized queries
-        db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES ('%s','%s','%s','%s','%s')" % (series_id, comicinfo["comicissue_num"], comicinfo["isbn"], comicinfo["pubdate"], comicinfo["quantity"]))
+	command = '''INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES ('%s','%s','%s','%s','%s')" % (series_id, comicinfo["comicissue_num"], comicinfo["isbn"], comicinfo["pubdate"], comicinfo["quantity"]))'''
+	db_cur.execute(command)
+
+        # TODO investigate parameterized queries
+#        db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES ('%s','%s','%s','%s','%s')" % (series_id, comicinfo["comicissue_num"], comicinfo["isbn"], comicinfo["pubdate"], comicinfo["quantity"]))
         # TODO check return code of execute to make sure it worked and handle appropriately
 
 
