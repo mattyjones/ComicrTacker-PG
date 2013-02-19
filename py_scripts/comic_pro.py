@@ -22,9 +22,10 @@
 #
 
 
-#the last thing I was trying to do was to get the series out from the list and then run it and return the id to insert into the statement.
-#I should look at prepared statements and also creating a class for comic issues.
+# THIS IS A PRODUCTION SCRIPT DO NOT MODIFY!!
 
+
+#last thing I was doing was getting the functio to use a file as an arguement to work.  If you remove the function def the code works fine
 
 
 import sys
@@ -33,7 +34,12 @@ import csv
 if "/home/matt/ComicTracker-PG/libs" not in sys.path:
 	sys.path.append("/home/matt/ComicTracker-PG/libs")
 
+if "/home/matt/ComicTracker-PG/comic_inserts" not in sys.path:
+	sys.path.append("/home/matt/ComicTracker-PG/comic_inserts")
+
+
 import ct_functions as ct_funct
+import getopt
 
 #---------------------------------------#
 # LIST_OF_TITLES			#
@@ -44,8 +50,20 @@ import ct_functions as ct_funct
 #					#
 #---------------------------------------#
 
-COMIC_FILE = 'comic_inserts/detective_comics_1937.txt'
+# COMIC_FILE = '../comic_inserts/batman_1940'
+#COMIC_ISSUE = ''
+COMIC_FILE = ''
 
+def get_comci_file(arg, OMIC_FILE):
+	opts, arg = getopt.getopt(sys.argv[1:],  'hi:', ["ifile="])
+	for opt, arg in opts:
+		if opt in ('-h'):
+     			print 'comic_prod.py -i <inputfile>'
+     			sys.exit()
+  		elif opt in ("-i"):
+     			COMIC_FILE = arg
+			print COMIC_FILE
+			return COMIC_FILE
 
 db_con, db_cur = ct_funct.db_connection() #open a connection
 
@@ -55,28 +73,15 @@ comicinfo = [] # create a new list
 for row in reader:
 	comicinfo.append(row) #read all dict's into list one issue per line
 
-##print comicinfo
 
-s = {'series_id' : '7'} # get the correct series id 
+s = {'series_id' : '1'} # get the correct series id 
 
 for item in comicinfo:
 	item.update (s) #append the series id to the list
 
 for item in comicinfo:
 	print item # print the list as a check
-#	SQL = "INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity, edition) VALUES ('%s','%s','%s','%s','%s','%s');"
-#	DATA = "(item[\"series_id\"], item[\"issue\"], item[\"isbn\"], item[\"date\"], item[\"quanity\"], item[\"edition\"])" 
-#	db_cur.execute(SQL, DATA)
-#	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES (%(series_id)s, %(issue)s, %(isbn)s, %(date)s, %(quanity)s);" { item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"]})
-        # TODO check return code of execute to make sure it worked and handle appropriately
-
-
-
-	#db_cur.execute(command)
-#for item in comicinfo: #insert the records into the table
-	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES ('%s','%s','%s','%s','%s')" % (item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"]))
-        # TODO check return code of execute to make sure it worked and handle appropriately
-
+#	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES ('%s','%s','%s','%s','%s')" % (item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"]))
 
 db_con.commit() #commit all changes
 

@@ -44,10 +44,25 @@ import ct_functions as ct_funct
 #					#
 #---------------------------------------#
 
+STORY_ARC = 'Death Of The Family'
 COMIC_FILE = 'comic_inserts/detective_comics_1937.txt'
+LIST_OF_TITLES = {
+                "Batman(1940)": 
+                        {"comicissue_num":0, 
+                        "isbn": "00011", 
+                        "pubdate": "Feb76", 
+                        "quantity": 1},
+                "Batman(2011)":
+                        {"comicissue_num":0, 
+                        "isbn": "00011", 
+                        "pubdate": "May12", 
+                        "quantity": 1}
+                }
 
 
 db_con, db_cur = ct_funct.db_connection() #open a connection
+
+storyarc_id = ct_funct.get_storyarc_id(STORY_ARC, db_cur) #this will return the story_arc id for later insertion
 
 reader = csv.DictReader(open(COMIC_FILE, 'rw'), fieldnames = ['series', 'issue', 'date', 'isbn', 'quanity'], dialect='excel-tab') #this reads a tab seperated file
 
@@ -67,14 +82,14 @@ for item in comicinfo:
 #	SQL = "INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity, edition) VALUES ('%s','%s','%s','%s','%s','%s');"
 #	DATA = "(item[\"series_id\"], item[\"issue\"], item[\"isbn\"], item[\"date\"], item[\"quanity\"], item[\"edition\"])" 
 #	db_cur.execute(SQL, DATA)
-#	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES (%(series_id)s, %(issue)s, %(isbn)s, %(date)s, %(quanity)s);" { item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"]})
+	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES (%(series_id)s, %(issue)s, %(isbn)s, %(date)s, %(quanity)s);" { item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"]})
         # TODO check return code of execute to make sure it worked and handle appropriately
 
 
 
 	#db_cur.execute(command)
 #for item in comicinfo: #insert the records into the table
-	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES ('%s','%s','%s','%s','%s')" % (item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"]))
+#	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity, edition) VALUES ('%s','%s','%s','%s','%s','%s')" % (item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"], item["edition"]))
         # TODO check return code of execute to make sure it worked and handle appropriately
 
 

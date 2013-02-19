@@ -40,6 +40,7 @@ CREATE TABLE ComicIssue (
 	pubdate					text		NOT NULL,  --the cover date (ex. Jun 86, Apr 11)
 	quanity					int			NOT NULL,  --how many copies are in the users collection
 	boxnumber				int,		--the location of the comic
+	digital					bit,		--this will show if I have digital copy of the comic 1==true 0==false
 	notes  					text		--various notes about the comic
 	);
 
