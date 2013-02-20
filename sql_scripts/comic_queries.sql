@@ -42,3 +42,15 @@ WHERE defaultseries.defaultseries_id = comicissue.fkey_defaultseries_id
 	and ( isbn like '____2' 
 			or isbn like '____3'
 		)
+
+--this will list all issues in a story arc and if I own them or not
+SELECT defaultstoryarc.defaultstoryarc, defaultseries.defaultseries, comicissue.comicissue_num,  storyarc.storyarc_issue_num, storyarc.readingorder
+FROM defaultstoryarc, defaultseries, storyarc
+LEFT OUTER JOIN comicissue ON (comicissue.comicissue_num = storyarc.storyarc_issue_num )
+WHERE defaultstoryarc.defaultstoryarc = 'Death Of The Family' AND defaultseries.defaultseries_id = storyarc.fkey_defaultseries_id
+
+
+--this will list all the comics I own that are in a story arc
+SELECT defaultstoryarc.defaultstoryarc, defaultseries.defaultseries, comicissue.comicissue_num,  storyarc.readingorder
+FROM defaultseries, comicissue, defaultstoryarc, storyarc
+WHERE defaultseries.defaultseries_id = comicissue.fkey_defaultseries_id AND defaultstoryarc.defaultstoryarc_id = storyarc.fkey_storyarc_id AND ( comicissue.comicissue_num = storyarc.storyarc_issue_num AND comicissue.fkey_defaultseries_id = storyarc.fkey_defaultseries_id)
