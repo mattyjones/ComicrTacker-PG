@@ -54,7 +54,8 @@ CREATE TABLE StoryTitle (
 CREATE TABLE StoryArc (
 
 	storyarc_id		serial	 	PRIMARY KEY,  --unique id and will be used as a foreign key when needed
-	fkey_storyarc_id	int		REFERENCES DefaultStoryArc(defaultstoryarc_id),  --references defaultstoryarc
+	fkey_storyarc_id1	int		REFERENCES DefaultStoryArc(defaultstoryarc_id),  --references defaultstoryarc
+	fkey_storyarc_id2	int		REFERENCES DefaultStoryArc(defaultstoryarc_id),
 	readingorder		int,		--the reading order of the comic issue in the story arc
 	notes  			text,		--various notes about the story arc
 	fkey_defaultseries_id 	int		REFERENCES DefaultSeries(defaultseries_id), --this will be the series
@@ -66,7 +67,7 @@ CREATE TABLE WantList (
 	wantlist_id		serial		PRIMARY KEY, --unique key to be refrenced if necessary
 	fkey_defaultseries_id	int		REFERENCES DefaultSeries(defaultseries_id), --the series
 	wantlist_issue_num	int,		--the issue number I want
-	notes					--various notes about the issue		
+	notes			text		--various notes about the issue		
 	);
 
 COMMIT;
