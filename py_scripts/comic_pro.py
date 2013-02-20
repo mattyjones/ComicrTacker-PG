@@ -24,12 +24,14 @@
 
 # THIS IS A PRODUCTION SCRIPT DO NOT MODIFY!!
 
-
-#last thing I was doing was getting the functio to use a file as an arguement to work.  If you remove the function def the code works fine
+#need to move function to other lib file
+#clean code of testing items
+#figure out string processing to get the series and set the series id
 
 
 import sys
 import csv
+import getopt
  
 if "/home/matt/ComicTracker-PG/libs" not in sys.path:
 	sys.path.append("/home/matt/ComicTracker-PG/libs")
@@ -39,7 +41,6 @@ if "/home/matt/ComicTracker-PG/comic_inserts" not in sys.path:
 
 
 import ct_functions as ct_funct
-import getopt
 
 #---------------------------------------#
 # LIST_OF_TITLES			#
@@ -53,17 +54,21 @@ import getopt
 # COMIC_FILE = '../comic_inserts/batman_1940'
 #COMIC_ISSUE = ''
 COMIC_FILE = ''
+SERIES = ''
 
-def get_comci_file(arg, OMIC_FILE):
-	opts, arg = getopt.getopt(sys.argv[1:],  'hi:', ["ifile="])
+def get_comic_file():
+	opts, arg = getopt.getopt(sys.argv[1:],  'hi:')
 	for opt, arg in opts:
 		if opt in ('-h'):
      			print 'comic_prod.py -i <inputfile>'
      			sys.exit()
   		elif opt in ("-i"):
-     			COMIC_FILE = arg
-			print COMIC_FILE
-			return COMIC_FILE
+     			test = arg
+			print test
+			return test
+
+COMIC_FILE = get_comic_file()
+#print SERIES
 
 db_con, db_cur = ct_funct.db_connection() #open a connection
 
@@ -74,12 +79,17 @@ for row in reader:
 	comicinfo.append(row) #read all dict's into list one issue per line
 
 
-s = {'series_id' : '1'} # get the correct series id 
+one = 'Birds Of Prey(2011)'
+matt = ct_funct.get_series_id(one, db_cur)
+print matt
+
+s = {'series_id' : matt } # get the correct series id 
 
 for item in comicinfo:
 	item.update (s) #append the series id to the list
 
 for item in comicinfo:
+#	print 'hello'
 	print item # print the list as a check
 #	db_cur.execute("INSERT INTO ComicIssue(fkey_defaultseries_id, comicissue_num, isbn, pubdate, quanity) VALUES ('%s','%s','%s','%s','%s')" % (item["series_id"], item["issue"], item["isbn"], item["date"], item["quanity"]))
 
