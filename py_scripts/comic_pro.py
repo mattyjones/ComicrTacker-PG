@@ -56,21 +56,9 @@ import ct_functions as ct_funct
 COMIC_FILE = ''
 SERIES = ''
 
-def get_comic_file():
-	opts, arg = getopt.getopt(sys.argv[1:],  'hi:')
-	for opt, arg in opts:
-		if opt in ('-h'):
-     			print 'comic_prod.py -i <inputfile>'
-     			sys.exit()
-  		elif opt in ("-i"):
-     			test = arg
-			print test
-			return test
-
-COMIC_FILE = get_comic_file()
-#print SERIES
-
 db_con, db_cur = ct_funct.db_connection() #open a connection
+
+COMIC_FILE = ct_funct.get_comic_file()
 
 reader = csv.DictReader(open(COMIC_FILE, 'rw'), fieldnames = ['series', 'issue', 'date', 'isbn', 'quanity'], dialect='excel-tab') #this reads a tab seperated file
 
