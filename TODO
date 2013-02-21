@@ -1,7 +1,7 @@
-search for a record and return the pk
-write all need querys
-scrap the text file for necessary information and import it
-finish schema
 finish import lists
 finish weekly import script
 write script to detect if I own a comic and update reading list if so
+find a way to pull the series automaticly either from the command line or from the text file
+rebuild the testing database so that it stays current
+sort all files into proper locations and add proper file names
+put everything under revision
