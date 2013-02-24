@@ -38,7 +38,7 @@ if "/home/matt/ComicTracker-PG/comic_inserts" not in sys.path:
 import ct_functions as ct_funct
 
 COMIC_FILE = ''
-SERIES = ''
+SERIES = 'tman(1940)'
 SERIES_ID = ''
 
 db_con, db_cur = ct_funct.db_connection() #open a connection
