@@ -14,3 +14,10 @@ update all license info
 write a proper readme
 write proper help files in the python scripts
 update all comments to proper form
+write up a meanigful github piece
+guard against sql injection for future use
+tk/tcl?
+cgi?
+add instructions and requirements for phppgadmin
+explore argparse instead of getopts
+blog post?
