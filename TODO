@@ -6,3 +6,11 @@ rebuild the testing database so that it stays current
 sort all files into proper locations and add proper file names
 put everything under revision
 figure out string processing to get the series and set the series id
+write a proper install script
+write proper install instructions
+write a backup script
+write a migration script
+update all license info
+write a proper readme
+write proper help files in the python scripts
+update all comments to proper form

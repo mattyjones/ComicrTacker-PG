@@ -1,4 +1,10 @@
-Install and populate the default tables
+Requirements:
+
+Postgres > 8.4
+Python > 2.7
+Linux OS for my backup scripts to work (BASH, CRON, RSYNC)
+
+1> Install and populate the default tables
 
 create the database
 run schema.sql to install/update the database schema
@@ -7,8 +13,7 @@ run series.sql to populate the series table
 modify storyarc.sql to include the story arcs you want to track
 run storyarc.sql to populate the default storyarc table
 
-
-Add comic issues
+2> Add comic issues
 
 place files containing a tab seperated list of the proper format into the data_files directory
 edit comic_prod.py with the series you want to import, this will be fixed at some point to automaticly pick this up
@@ -19,8 +24,7 @@ Add Want List Comics
 place files containing a tab seperated list of the proper format into the data_files directory
 run python script to add comics to the want table
 
-Add Comics to the storyacr list
-
+Add Comics to the storyarc list
 
 place files containing a tab seperated list of the proper format into the data_files directory
 run python script to add comics to the story arc table
