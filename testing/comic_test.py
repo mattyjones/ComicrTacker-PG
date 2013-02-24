@@ -22,7 +22,6 @@
 #
 
 
-# THIS IS A PRODUCTION SCRIPT DO NOT MODIFY!!
 
 import sys
 import csv
