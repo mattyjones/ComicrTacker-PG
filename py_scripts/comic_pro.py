@@ -1,6 +1,6 @@
 # Comic Tracker
 # Main
-# Matt Jones urlugal@gmail.com
+# Matt Jones 
 # Created 01.24.13
 # Last Update 01.24.13
 #
@@ -8,7 +8,6 @@
 # This is the main file and will be executed from the top down.  It will import functions from
 # ctfunctions.py for all necessary functionality.  All data will be stored in external files to
 # be imported when necessary.
-# The lastest versions can be found at https://git.caffeinatedengineering.com:ComicTracker-PG
 #
 # TODO:
 # * add error checking
