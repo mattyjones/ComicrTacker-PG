@@ -1,6 +1,5 @@
 /*------------------------------------------------------- 
 CaffeinatedEngineering
-Matt Jones <urlugal.misc@gmail.com>
 
 <Overview>
  This files holds the table structure and creation code for
