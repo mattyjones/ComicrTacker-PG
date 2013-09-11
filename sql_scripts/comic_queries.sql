@@ -1,4 +1,4 @@
-s will return all the newstand issues of a particular series
+--This will return all the newstand issues of a particular series
 --format ""SERIES TITLE    ISSUE NUMBER    ISBN NUMBER    QUANITY""
 SELECT defaultseries.defaultseries, comicissue.comicissue_num, comicissue.isbn, comicissue.quanity
 FROM defaultseries, comicissue
