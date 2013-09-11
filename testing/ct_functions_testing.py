@@ -1,6 +1,5 @@
 # Comic Tracker
 # Production Functions
-# Matt Jones urlugal@gmail.com
 # Created 01.24.13
 # Last Update 01.24.13
 #
