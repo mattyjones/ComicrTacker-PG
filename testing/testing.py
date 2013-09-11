@@ -1,6 +1,5 @@
 # Comic Tracker
 # Main
-# Matt Jones urlugal@gmail.com
 # Created 01.24.13
 # Last Update 01.24.13
 #
