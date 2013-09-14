@@ -1,4 +1,5 @@
 # Comic Tracker
+# Matt Jones caffeinatedengineering@gmail.com
 # Main
 # Created 01.24.13
 # Last Update 01.24.13

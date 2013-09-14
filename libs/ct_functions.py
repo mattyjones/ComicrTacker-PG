@@ -1,6 +1,6 @@
 # Comic Tracker
 # Production Functions
-# Matt Jones 
+# Matt Jones caffeinatedengineering@gmail.com
 # Created 01.24.13
 # Last Update 01.24.13
 #
